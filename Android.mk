@@ -2,17 +2,20 @@ LOCAL_PATH := $(call my-dir)
 include $(CLEAR_VARS)
 
 LOCAL_MODULE_TAGS := debug
-LOCAL_SHARED_LIBRARIES := libstlport \
-			  libnl \
-			  libpci \
+LOCAL_STATIC_LIBRARIES := libstlport_static \
+			  libnl_2 \
+			  libpci_static \
 
 LOCAL_MODULE := powertop
 
-#LOCAL_CFLAGS += -Wall -O2 -g -fno-omit-frame-pointer -fstack-protector -Wshadow -Wformat -D_FORTIFY_SOURCE=2
-#LOCAL_CPPFLAGS += -Wall -O2 -g -fno-omit-frame-pointer
-LOCAL_CPPFLAGS += -DDISABLE_NCURSES -DDISABLE_I18N -DDISABLE_TRYCATCH
+LOCAL_CPPFLAGS += -DDISABLE_NCURSES -DDISABLE_I18N -DDISABLE_TRYCATCH \
+		-DCONFIG_LIBNL20 -DTRUE=1 -DFALSE=0
 
-LOCAL_C_INCLUDES += external/stlport/stlport/ external/stlport/stlport/stl external/stlport/stlport/using/h/  bionic external/libnl/include/
+LOCAL_CFLAGS += -DCONFIG_LIBNL20
+
+LOCAL_C_INCLUDES += external/stlport/stlport/ external/stlport/stlport/stl \
+			external/stlport/stlport/using/h/ \
+			bionic external/libnl-headers/ external/pciutils/include
 
 LOCAL_SRC_FILES += \
 	parameters/parameters.cpp \
