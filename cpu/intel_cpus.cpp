@@ -74,10 +74,15 @@ static uint64_t get_msr(int cpu, uint64_t offset)
 
 	retval = pread(fd, &msr, sizeof msr, offset);
 	if (retval != sizeof msr) {
+	// Some of the msr reads are not permitted
+#ifndef PENWELL
 		reset_display();
 		fprintf(stderr, "pread cpu%d 0x%llx : ", cpu, (unsigned long long)offset);
 		fprintf(stderr, "%s\n", strerror(errno));
 		exit(-2);
+#else
+		msr = 0;
+#endif
 	}
 	close(fd);
 	return msr;
