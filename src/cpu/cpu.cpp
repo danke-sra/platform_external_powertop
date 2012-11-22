@@ -73,12 +73,14 @@ static class abstract_cpu * new_package(int package, int cpu, char * vendor, int
 			case 0x2C:	/* Westmere */
 				ret = new class nhm_package;
 				break;
+			case 0x45:	/* HSW ULT */
+				has_c8c9c10_res = 1;
 			case 0x2A:	/* SNB */
 			case 0x2D:	/* SNB Xeon */
 			case 0x3A:      /* IVB */
-			case 0x3C:
+			case 0x3C:	/* HSW Client */
 			case 0x3D:      /* IVB Xeon */
-			case 0x45:	/* Next Gen Intel Core Processor */
+			case 0x3F:	/* HSW Xeon */
 				has_c2c7_res = 1;
 				ret = new class nhm_package;
 				break;
@@ -115,9 +117,10 @@ static class abstract_cpu * new_core(int core, int cpu, char * vendor, int famil
 			case 0x2A:	/* SNB */
 			case 0x2D:	/* SNB Xeon */
 			case 0x3A:      /* IVB */
-			case 0x3C:
+			case 0x3C:	/* HSW Client */
 			case 0x3D:      /* IVB Xeon */
-			case 0x45:	/* Next Gen Intel Core Processor */
+			case 0x3F:	/* HSW Xeon */
+			case 0x45:	/* HSW ULT */
 				ret = new class nhm_core;
 			}
 	}
@@ -159,9 +162,10 @@ static class abstract_cpu * new_cpu(int number, char * vendor, int family, int m
 			case 0x2A:	/* SNB */
 			case 0x2D:	/* SNB Xeon */
 			case 0x3A:      /* IVB */
-			case 0x3C:
+			case 0x3C:	/* HSW ULT */
 			case 0x3D:      /* IVB Xeon */
-			case 0x45:	/* Next Gen Intel Core Processor */
+			case 0x3F:	/* HSW Xeon */
+			case 0x45:	/* HSW ULT */
 				ret = new class nhm_cpu;
 			}
 	}
