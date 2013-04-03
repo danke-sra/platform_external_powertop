@@ -852,13 +852,14 @@ void process_update_display(void)
 		char usage[20];
 		char events[20];
 		char descr[128];
+		int cnt;
 		format_watts(all_power[i]->Witts(), power, 10);
 
 		if (!show_power)
 			strcpy(power, "          ");
 		sprintf(name, "%s", all_power[i]->type());
-		while (mbstowcs(NULL,name,0) < 14) strcat(name, " ");
-
+		for(cnt=strlen(name); cnt<14; cnt++)
+			strcat(name, " ");
 
 		if (all_power[i]->events() == 0 && all_power[i]->usage() == 0 && all_power[i]->Witts() == 0)
 			break;
@@ -870,7 +871,8 @@ void process_update_display(void)
 			else
 				sprintf(usage, "%5i%s", (int)all_power[i]->usage(), all_power[i]->usage_units());
 		}
-		while (mbstowcs(NULL,usage,0) < 14) strcat(usage, " ");
+		for(cnt=strlen(usage); cnt<14; cnt++)
+			strcat(usage, " ");
 		sprintf(events, "%5.1f", all_power[i]->events());
 		if (!all_power[i]->show_events())
 			events[0] = 0;

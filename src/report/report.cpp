@@ -24,7 +24,7 @@
  *  Chris Ferron <chris.e.ferron@linux.intel.com>
  */
 
-#include "lib.h"
+#include "../lib.h"
 #include "report.h"
 #include "report-maker.h"
 #include <errno.h>
@@ -35,6 +35,9 @@
 #include <string.h>
 #include <malloc.h>
 #include <unistd.h>
+
+// not in Android c-lib
+#define strchrnul strchr
 
 using namespace std;
 

@@ -29,7 +29,7 @@
 
 
 extern "C" {
-	#include "../traceevent/event-parse.h"
+	#include "traceevent/event-parse.h"
 }
 
 
