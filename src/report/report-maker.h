@@ -76,7 +76,7 @@
 
 /* Conditional gettext. We need original strings for CSV. */
 #define __(STRING) \
-	((report.get_type() == REPORT_CSV) ? (STRING) : gettext(STRING))
+	((report.get_type() == REPORT_CSV) ? (STRING) : _(STRING))
 
 #ifndef UNUSED
 #define UNUSED __attribute__((unused))

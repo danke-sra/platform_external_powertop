@@ -87,7 +87,9 @@ void alsa::start_measurement(void)
 	ifstream file;
 
 	sprintf(filename, "%s/power_off_acct", sysfs_path);
+#ifndef DISABLE_TRYCATCH
 	try {
+#endif
 		file.open(filename, ios::in);
 		if (file) {
 			file >> start_inactive;
@@ -100,10 +102,12 @@ void alsa::start_measurement(void)
 			file >> start_active;
 		}
 		file.close();
+#ifndef DISABLE_TRYCATCH
 	}
 	catch (std::ios_base::failure &c) {
 		fprintf(stderr, "%s\n", c.what());
 	}
+#endif
 }
 
 void alsa::end_measurement(void)
@@ -113,7 +117,9 @@ void alsa::end_measurement(void)
 	double p;
 
 	sprintf(filename, "%s/power_off_acct", sysfs_path);
+#ifndef DISABLE_TRYCATCH
 	try {
+#endif
 		file.open(filename, ios::in);
 		if (file) {
 			file >> end_inactive;
@@ -126,10 +132,12 @@ void alsa::end_measurement(void)
 			file >> end_active;
 		}
 		file.close();
+#ifndef DISABLE_TRYCATCH
 	}
 	catch (std::ios_base::failure &c) {
 		fprintf(stderr, "%s\n", c.what());
 	}
+#endif
 
 	p = (end_active - start_active) / (0.001 + end_active + end_inactive - start_active - start_inactive) * 100.0;
 	report_utilization(name, p);

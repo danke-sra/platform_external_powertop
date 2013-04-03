@@ -33,7 +33,7 @@
 #include <stdarg.h>
 
 #include "report-formatter-html.h"
-#include "css.h" /* For HTML-report header */
+#include "../css.h" /* For HTML-report header */
 
 /* ************************************************************************ */
 

@@ -44,7 +44,7 @@
 #include "perf/perf.h"
 #include "perf/perf_bundle.h"
 #include "lib.h"
-#include "../config.h"
+//#include "../config.h"
 
 
 #include "devices/device.h"
@@ -366,11 +366,16 @@ int main(int argc, char **argv)
 	char workload[4096] = {0,};
 	int  iterations = 1, auto_tune = 0;
 
+// not supported in android c++
+#define set_new_handler(x)
 	set_new_handler(out_of_memory);
 
+
 	setlocale (LC_ALL, "");
+#ifndef DISABLE_I18N
 	bindtextdomain (PACKAGE, LOCALEDIR);
 	textdomain (PACKAGE);
+#endif
 
 	while (1) { /* parse commandline options */
 		c = getopt_long (argc, argv, "ch:C:i:t:uVw:q", long_options, &option_index);

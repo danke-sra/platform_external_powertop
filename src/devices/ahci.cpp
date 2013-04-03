@@ -151,7 +151,9 @@ void ahci::start_measurement(void)
 	ifstream file;
 
 	sprintf(filename, "%s/ahci_alpm_active", sysfs_path);
+#ifndef DISABLE_TRYCATCH
 	try {
+#endif
 		file.open(filename, ios::in);
 		if (file) {
 			file >> start_active;
@@ -176,10 +178,12 @@ void ahci::start_measurement(void)
 			file >> start_devslp;
 		}
 		file.close();
+#ifndef DISABLE_TRYCATCH
 	}
 	catch (std::ios_base::failure &c) {
 		fprintf(stderr, "%s\n", c.what());
 	}
+#endif
 
 }
 
@@ -190,7 +194,9 @@ void ahci::end_measurement(void)
 	ifstream file;
 	double p;
 
+#ifndef DISABLE_TRYCATCH
 	try {
+#endif
 		sprintf(filename, "%s/ahci_alpm_active", sysfs_path);
 		file.open(filename, ios::in);
 		if (file) {
@@ -215,10 +221,12 @@ void ahci::end_measurement(void)
 			file >> end_devslp;
 		}
 		file.close();
+#ifndef DISABLE_TRYCATCH
 	}
 	catch (std::ios_base::failure &c) {
 		fprintf(stderr, "%s\n", c.what());
 	}
+#endif
 	if (end_active < start_active)
 		end_active = start_active;
 
