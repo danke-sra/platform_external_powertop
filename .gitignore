@@ -38,7 +38,6 @@ po/remove-potcdate.sin
 po/*.gmo
 po/stamp-po
 src/powertop
-src/css.h
 src/Makefile.in
 src/.deps/
 src/Makefile
