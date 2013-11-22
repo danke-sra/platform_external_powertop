@@ -32,7 +32,7 @@ using namespace std;
 
 #include <sys/time.h>
 #include "i915-gpu.h"
-#include "cpu/rapl/rapl_interface.h"
+#include "src/cpu/rapl/rapl_interface.h"
 
 class gpu_rapl_device: public i915gpu {
 

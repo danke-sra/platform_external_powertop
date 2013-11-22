@@ -27,7 +27,7 @@
 #include <unistd.h>
 #include <errno.h>
 #include <math.h>
-#include "lib.h"
+#include "src/lib.h"
 #include "rapl_interface.h"
 
 #ifdef DEBUG

@@ -2,17 +2,17 @@ LOCAL_PATH := $(call my-dir)
 include $(CLEAR_VARS)
 
 LOCAL_MODULE_TAGS := debug
-LOCAL_STATIC_LIBRARIES := libstlport_static \
-			  libnl_2 \
+LOCAL_STATIC_LIBRARIES := libnl_2 \
 			  libpci_static \
 
 #			  libtraceevent \
 
-LOCAL_SHARED_LIBRARIES := libncurses
+LOCAL_SHARED_LIBRARIES := libstlport \
+			  libncurses
 
-LOCAL_MODULE := powertop  
+LOCAL_MODULE := powertop
 
-LOCAL_CPPFLAGS += -DDISABLE_I18N -DPACKAGE_VERSION=\"2.3\" -DPACKAGE=powertop -DDISABLE_TRYCATCH -DHAVE_LIBNL20
+LOCAL_CPPFLAGS += -DDISABLE_I18N -DPACKAGE_VERSION=\"2.5\" -DPACKAGE=powertop -DDISABLE_TRYCATCH -DHAVE_LIBNL20
 
 LOCAL_CFLAGS += -DHAVE_LIBNL20
 
