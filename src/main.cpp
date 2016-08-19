@@ -420,7 +420,7 @@ int main(int argc, char **argv)
 				break;
 
 			case 'w': /* measure workload */
-				sprintf(workload, "%s", optarg ? optarg :'\0' );
+				sprintf(workload, "%s", optarg ? optarg :"" );
 				break;
 			case 'q':
 				if(freopen("/dev/null", "a", stderr))

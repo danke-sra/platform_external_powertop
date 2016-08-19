@@ -5115,7 +5115,7 @@ int pevent_strerror(struct pevent *pevent __maybe_unused,
 	const char *msg;
 
 	if (errnum >= 0) {
-		msg = strerror_r(errnum, buf, buflen);
+		msg = (char*)strerror_r(errnum, buf, buflen);
 		if (msg != buf) {
 			size_t len = strlen(msg);
 			memcpy(buf, msg, min(buflen - 1, len));

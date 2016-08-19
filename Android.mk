@@ -2,7 +2,7 @@ LOCAL_PATH := $(call my-dir)
 include $(CLEAR_VARS)
 
 LOCAL_MODULE_TAGS := debug
-LOCAL_STATIC_LIBRARIES := libnl_2 \
+LOCAL_STATIC_LIBRARIES := libnl \
 			  libpci_static \
 
 #			  libtraceevent \
@@ -12,7 +12,7 @@ LOCAL_SHARED_LIBRARIES := libstlport \
 
 LOCAL_MODULE := powertop
 
-LOCAL_CPPFLAGS += -DDISABLE_I18N -DPACKAGE_VERSION=\"2.5\" -DPACKAGE=powertop -DDISABLE_TRYCATCH -DHAVE_LIBNL20
+LOCAL_CPPFLAGS += -DDISABLE_I18N -DPACKAGE_VERSION=\"2.5\" -DPACKAGE=powertop -DDISABLE_TRYCATCH -DHAVE_LIBNL20 -Wno-error=date-time 
 
 LOCAL_CFLAGS += -DHAVE_LIBNL20
 
@@ -20,7 +20,7 @@ LOCAL_CFLAGS += -DHAVE_LIBNL20
 #LOCAL_CPPFLAGS += -Wall -O2 -g -fno-omit-frame-pointer
 
 LOCAL_C_INCLUDES += external/libnl/include/ external/libncurses/include external/pciutils/include/ external/libnl-headers/
-include external/stlport/libstlport.mk
+#include external/stlport/libstlport.mk
 
 LOCAL_SRC_FILES += \
 	src/parameters/parameters.cpp \
@@ -61,7 +61,6 @@ LOCAL_SRC_FILES += \
 	src/tuning/ethernet.cpp \
 	src/tuning/runtime.cpp \
 	src/tuning/iw.c \
-	src/tuning/iw.h \
 	src/tuning/tunable.cpp \
 	src/tuning/tuningsysfs.cpp \
 	src/tuning/cpufreq.cpp \
