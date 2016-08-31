@@ -7,12 +7,11 @@ LOCAL_STATIC_LIBRARIES := libnl \
 
 #			  libtraceevent \
 
-LOCAL_SHARED_LIBRARIES := libstlport \
-			  libncurses
+LOCAL_SHARED_LIBRARIES := libncurses
 
 LOCAL_MODULE := powertop
 
-LOCAL_CPPFLAGS += -DDISABLE_I18N -DPACKAGE_VERSION=\"2.5\" -DPACKAGE=powertop -DDISABLE_TRYCATCH -DHAVE_LIBNL20 -Wno-error=date-time 
+LOCAL_CPPFLAGS += -DDISABLE_I18N -DPACKAGE_VERSION=\"2.5\" -DPACKAGE=powertop -DDISABLE_TRYCATCH -DHAVE_LIBNL20 -Wno-error=date-time -Wno-error -Wno-error=uninitialized -Wno-error=maybe-uninitialized -w -Wno-error=pointer-arith -Wno-error=int-to-pointer-cast -Wno-error=missing-field-initializers -Wno-error=sign-compare
 
 LOCAL_CFLAGS += -DHAVE_LIBNL20
 

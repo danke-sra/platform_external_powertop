@@ -1239,7 +1239,7 @@ static unsigned int type_size(const char *name)
 		{ "s32",  4 },
 		{ "s64",  8 },
 		{ "char", 1 },
-		{ },
+		{ NULL, 0 },
 	};
 	int i;
 
@@ -1515,7 +1515,7 @@ static int event_read_fields(struct event_format *event, struct format_field **f
 				field->elementsize = 1;
 			else if (field->flags & FIELD_IS_LONG)
 				field->elementsize = event->pevent ?
-						     event->pevent->long_size :
+						     (unsigned)event->pevent->long_size :
 						     sizeof(long);
 		} else
 			field->elementsize = field->size;
@@ -5115,7 +5115,7 @@ int pevent_strerror(struct pevent *pevent __maybe_unused,
 	const char *msg;
 
 	if (errnum >= 0) {
-		msg = (char*)strerror_r(errnum, buf, buflen);
+		msg = (char*)(long long)strerror_r(errnum, buf, buflen);
 		if (msg != buf) {
 			size_t len = strlen(msg);
 			memcpy(buf, msg, min(buflen - 1, len));
